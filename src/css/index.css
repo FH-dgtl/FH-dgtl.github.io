@@ -10,15 +10,21 @@
     from var(--color-brand) clamp(0, l - 0.22, 1) calc(c * 0.92) h
   );
 
-  --color-brand--complement: hsl(from var(--color-brand) calc(h - 180) s l);
-  --color-text: CanvasText;
   --color-highlight: light-dark(
     var(--color-brand--dark),
     var(--color-brand--light)
   );
+
+  --color-brand--complement: hsl(from var(--color-brand) calc(h - 180) s l);
+  --color-text: CanvasText;
   --ff-serif: Courier, serif;
-  --ff-sans-serif: Arial, Helvetica, sans-serif;
+  --ff-sans-serif: monospace;
   --icon-size: clamp(2rem, 0rem + 8vw, 7rem);
+}
+
+::selection {
+  background: var(--color-brand);
+  color: #fff;
 }
 
 html {
@@ -76,10 +82,10 @@ main {
       fill: currentColor;
     }
     &:hover {
-      color: var(--color-brand);
+      --color-highlight: var(--color-brand);
     }
     &:focus-visible {
-      color: var(--color-brand--complement);
+      --color-highlight: var(--color-brand--complement);
       outline: transparent;
     }
   }
