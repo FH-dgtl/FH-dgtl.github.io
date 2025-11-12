@@ -1,25 +1,25 @@
 :root {
-  --hue: 12;
+  --hue: 355;
   --color-brand: oklch(0.6986 0.3394 var(--hue));
-
-  --color-brand--light: oklch(
-    from var(--color-brand) clamp(0, l + 0.22, 1) calc(c * 0.9) h
-  );
-
+  --color-brand--light: oklch(from var(--color-brand) 0.6 c h);
   --color-brand--dark: oklch(
-    from var(--color-brand) clamp(0, l - 0.22, 1) calc(c * 0.92) h
+    from var(--color-brand) 0.3 clamp(0, l + 0.1, 1) h
   );
-
   --color-highlight: light-dark(
     var(--color-brand--dark),
     var(--color-brand--light)
   );
-
-  --color-brand--complement: hsl(from var(--color-brand) calc(h - 180) s l);
+  --color-highlight--invert: light-dark(
+    var(--color-brand--light),
+    var(--color-brand--dark)
+  );
   --color-text: CanvasText;
   --ff-serif: Courier, serif;
   --ff-sans-serif: monospace;
   --icon-size: clamp(2rem, 0rem + 8vw, 7rem);
+  --spacing-s: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  --spacing-m: clamp(1.5rem, 0.9rem + 2.4vw, 3rem);
+  --spacing-l: clamp(2rem, 1.2rem + 3.2vw, 4rem);
 }
 
 ::selection {
@@ -48,12 +48,12 @@ h3 {
 h1 {
   text-transform: uppercase;
   font-size: clamp(4rem, 3.2rem + 3.2vw, 6rem);
-  margin-block-start: 1rem;
   line-height: 90%;
+  margin-block-start: 0;
 }
 
 h2 {
-  margin-block-start: 2rem;
+  margin-block-start: var(--spacing-l);
 }
 
 p {
@@ -72,20 +72,24 @@ main {
 .social {
   display: inline-flex;
   margin-block-start: 1rem;
-  gap: 1rem;
+  gap: var(--spacing-s);
+
   a {
     color: var(--color-highlight);
     text-decoration: none;
+
     svg {
       width: var(--icon-size);
       height: var(--icon-size);
       fill: currentColor;
     }
+
     &:hover {
-      --color-highlight: var(--color-brand);
+      --color-highlight: var(--color-highlight--invert);
     }
+
     &:focus-visible {
-      --color-highlight: var(--color-brand--complement);
+      --color-highlight: CanvasText;
       outline: transparent;
     }
   }
