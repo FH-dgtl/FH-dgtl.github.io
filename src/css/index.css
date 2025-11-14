@@ -3,7 +3,7 @@
   --color-brand: oklch(0.6986 0.3394 var(--hue));
   --color-brand--light: oklch(from var(--color-brand) 0.6 c h);
   --color-brand--dark: oklch(
-    from var(--color-brand) 0.3 clamp(0, l + 0.1, 1) h
+    from var(--color-brand) 0.3 clamp(0, c + 0.1, 1) h
   );
   --color-highlight: light-dark(
     var(--color-brand--dark),
